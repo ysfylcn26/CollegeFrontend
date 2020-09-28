@@ -4,7 +4,6 @@ import {MainRoutingModule} from './main-routing.module';
 import {MainComponent} from './main.component';
 import {SignInComponent} from './component/sign-in/sign-in.component';
 import {SignUpComponent} from './component/sign-up/sign-up.component';
-import {BookComponent} from './component/book/book.component';
 import {HomeComponent} from './component/home/home.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -13,7 +12,6 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         MainComponent,
         SignInComponent,
         SignUpComponent,
-        BookComponent,
         HomeComponent
     ],
     exports: [
