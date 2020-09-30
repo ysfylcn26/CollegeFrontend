@@ -6,13 +6,15 @@ import {SignInComponent} from './component/sign-in/sign-in.component';
 import {SignUpComponent} from './component/sign-up/sign-up.component';
 import {HomeComponent} from './component/home/home.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { AlertComponent } from './component/alert/alert.component';
 
 @NgModule({
     declarations: [
         MainComponent,
         SignInComponent,
         SignUpComponent,
-        HomeComponent
+        HomeComponent,
+        AlertComponent
     ],
     exports: [
         MainComponent

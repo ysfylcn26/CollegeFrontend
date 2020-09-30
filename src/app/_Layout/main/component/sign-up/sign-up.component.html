@@ -10,25 +10,14 @@
                 </span>
 
                 <div class="wrap-input100">
-                    <label class="label-font">Name</label>
-                    <input class="input100 form-control" type="text" name="name" formControlName="name">
+                    <label class="label-font">Username</label>
+                    <input class="input100 form-control" type="text" name="username" formControlName="username">
                     <span class="text-danger"
-                          *ngIf="(registerFormControl.name.touched || submitted) && registerFormControl.name.errors?.required">Name is required</span>
+                          *ngIf="(registerFormControl.username.touched || submitted) && registerFormControl.username.errors?.required">Name is required</span>
                     <span class="text-danger"
-                          *ngIf="(registerFormControl.name.touched || submitted) && registerFormControl.name.errors?.minlength">Min length is 2</span>
+                          *ngIf="(registerFormControl.username.touched || submitted) && registerFormControl.username.errors?.minlength">Min length is 2</span>
                     <span class="text-danger"
-                          *ngIf="(registerFormControl.name.touched || submitted) && registerFormControl.name.errors?.maxlength">Min length is 22</span>
-                </div>
-
-                <div class="wrap-input100">
-                    <label class="label-font">Surname</label>
-                    <input class="input100 form-control" type="text" name="Surname" formControlName="surname">
-                    <span class="text-danger"
-                          *ngIf="(registerFormControl.surname.touched || submitted) && registerFormControl.surname.errors?.required">Surname is required</span>
-                    <span class="text-danger"
-                          *ngIf="(registerFormControl.surname.touched || submitted) && registerFormControl.surname.errors?.minlength">Min length is 2</span>
-                    <span class="text-danger"
-                          *ngIf="(registerFormControl.surname.touched || submitted) && registerFormControl.surname.errors?.maxlength">Min length is 22</span>
+                          *ngIf="(registerFormControl.username.touched || submitted) && registerFormControl.username.errors?.maxlength">Min length is 22</span>
                 </div>
 
                 <div class="wrap-input100">
@@ -51,6 +40,14 @@
                           *ngIf="(registerFormControl.pass.touched || submitted) && registerFormControl.pass.errors?.minlength">Min length is 4</span>
                     <span class="text-danger"
                           *ngIf="(registerFormControl.pass.touched || submitted) && registerFormControl.pass.errors?.maxlength">Max length is 20</span>
+                </div>
+
+                <div class="wrap-input100">
+                    <label class="label-font">Role</label>
+                    <input class="input100 form-control" type="text" name="role" formControlName="role">
+                    <span class="text-danger"
+                          *ngIf="(registerFormControl.role.touched || submitted) && (registerFormControl.role.errors?.maxlength
+                                || registerFormControl.role.errors?.minlength)">Length is not 5</span>
                 </div>
 
                 <div class="container-login100-form-btn">

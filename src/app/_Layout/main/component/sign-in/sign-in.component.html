@@ -1,7 +1,7 @@
 <div class="limiter">
     <div class="container-login100">
         <div class="wrap-login100">
-            <form class="login100-form validate-form" [formGroup]="userForm" (onSubmit)="onSubmit()">
+            <form class="login100-form validate-form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
                 <span class="login100-form-title p-b-26">
                     Welcome
                 </span>
@@ -10,14 +10,14 @@
                 </span>
 
                 <div class="wrap-input100">
-                    <label class="label-font ">Email</label>
-                    <input class="input100 form-control" type="text" name="email" formControlName="email">
+                    <label class="label-font">Username</label>
+                    <input class="input100 form-control" type="text" name="username" formControlName="username">
                     <span class="text-danger"
-                          *ngIf="(userSignInForm.email.touched || submitted) && userSignInForm.email.errors?.required">Name is required</span>
+                          *ngIf="(userSignInForm.username.touched || submitted) && userSignInForm.username.errors?.required">Name is required</span>
                     <span class="text-danger"
-                          *ngIf="(userSignInForm.email.touched || submitted) && userSignInForm.email.errors?.email">Not valid mail</span>
+                          *ngIf="(userSignInForm.username.touched || submitted) && userSignInForm.username.errors?.minlength">Min length is 2</span>
                     <span class="text-danger"
-                          *ngIf="(userSignInForm.email.touched || submitted) && userSignInForm.email.errors?.maxlength">Max length is 50</span>
+                          *ngIf="(userSignInForm.username.touched || submitted) && userSignInForm.username.errors?.maxlength">Min length is 22</span>
                 </div>
 
                 <div class="wrap-input100">
@@ -34,7 +34,7 @@
                 <div class="container-login100-form-btn">
                     <div class="wrap-login100-form-btn">
                         <div class="login100-form-bgbtn"></div>
-                        <button class="login100-form-btn">
+                        <button class="login100-form-btn"  type="submit" [disabled]="!formSubmitted">
                             Sign In
                         </button>
                     </div>

@@ -5,6 +5,7 @@ import {AppComponent} from './app.component';
 import {MainModule} from './_Layout/main/main.module';
 import {HeaderComponent} from './_Layout/haeder/header.component'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         AppRoutingModule,
         MainModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpClientModule
 
     ],
     providers: [],
