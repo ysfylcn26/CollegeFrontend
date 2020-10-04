@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Alert, AlertType } from '../dto/alert';
+import { Alert } from '../dto/alert';
 
 @Injectable({
   providedIn: 'root'

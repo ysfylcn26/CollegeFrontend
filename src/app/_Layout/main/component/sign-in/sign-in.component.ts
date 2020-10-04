@@ -37,16 +37,19 @@ export class SignInComponent implements OnInit {
             this.auth.signIn(this.userForm.value).subscribe( data => {
                 this.token.saveToken(data.token);
                 this.token.saveUser(new User(data.id, data.username));
+                this.auth.setRoleValue(data.role);
+                this.auth.setSignStatus(true);
+                console.log(data.role +" data buraya geldi ");
             },
             err => {
-                this.alert.alert(new Alert("Wrong SignIn", "Data burada", AlertType.ERROR));
+                this.alert.alert(new Alert("Wrong SignIn", "Wrong SignIn Info", AlertType.ERROR));
             }
             )
             this.userForm.reset();
             this.submitted = false;
             this.formSubmitted = true;
         }else{
-            this.alert.alert(new Alert("SignIp","Not valid", AlertType.ERROR));
+            this.alert.alert(new Alert("SignIp","Not Valid", AlertType.ERROR));
             this.formSubmitted = true;
         }
     }
