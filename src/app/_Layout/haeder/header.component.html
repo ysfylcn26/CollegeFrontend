@@ -1,6 +1,6 @@
 <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand">College</a>
+        <a class="navbar-brand text-success">Eduwisec</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -9,15 +9,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a routerLink="/home" class="nav-link">Home <span class="sr-only">(current)</span></a>
+                    <a routerLink="/home" class="nav-link text-secondary" *ngIf="statu">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a routerLink="/add" class="nav-link text-secondary" *ngIf="statu && admin">Add/Update</a>
+                </li>
+                <li class="nav-item active">
+                    <a routerLink="/users" class="nav-link text-secondary" *ngIf="statu && admin">Users</a>
                 </li>
             </ul>
 
             <a routerLink="/sign-in" class="btn btn-outline-success mr-sm-2" *ngIf="!statu">Sign In</a>
             <a routerLink="/sign-in" (click)="signOut()" class="btn btn-outline-success mr-sm-2" *ngIf="statu">Sign Out</a>
-            <a routerLink="/sign-up" class="btn btn-outline-success" *ngIf="admin">Sign Up</a>
+            <a routerLink="/sign-up" class="btn btn-outline-success" >Sign Up</a><!-- *ngIf="statu && admin" -->
 
         </div>
     </nav>
 </div>
-    

@@ -10,35 +10,30 @@
                 </span>
 
                 <div class="wrap-input100">
-                    <label class="label-font">Username</label>
-                    <input class="input100 form-control" type="text" name="username" formControlName="username">
+                    <label class="label-font ">Email</label>
+                    <input class="input100 form-control" type="text" name="email" formControlName="email">
                     <span class="text-danger"
-                          *ngIf="(userSignInForm.username.touched || submitted) && userSignInForm.username.errors?.required">Name is required</span>
+                          *ngIf="(userSignInForm.email.touched || submitted) && userSignInForm.email.errors?.required">Mail is required</span>
                     <span class="text-danger"
-                          *ngIf="(userSignInForm.username.touched || submitted) && userSignInForm.username.errors?.minlength">Min length is 2</span>
+                          *ngIf="(userSignInForm.email.touched || submitted) && userSignInForm.email.errors?.email">Not valid mail</span>
                     <span class="text-danger"
-                          *ngIf="(userSignInForm.username.touched || submitted) && userSignInForm.username.errors?.maxlength">Min length is 22</span>
+                          *ngIf="(userSignInForm.email.touched || submitted) && userSignInForm.email.errors?.maxlength">Max length is 50</span>
                 </div>
 
                 <div class="wrap-input100">
                     <label class="label-font">Password</label>
                     <input class="input100 form-control" type="password" name="pass" formControlName="pass">
                     <span class="text-danger"
-                          *ngIf="(userSignInForm.pass.touched || submitted) && userSignInForm.pass.errors?.required">Name is required</span>
+                          *ngIf="(userSignInForm.pass.touched || submitted) && userSignInForm.pass.errors?.required">Password is required</span>
                     <span class="text-danger"
                           *ngIf="(userSignInForm.pass.touched || submitted) && userSignInForm.pass.errors?.minlength">Min length is 4</span>
                     <span class="text-danger"
                           *ngIf="(userSignInForm.pass.touched || submitted) && userSignInForm.pass.errors?.maxlength">Max length is 20</span>
                 </div>
 
-                <div class="container-login100-form-btn">
-                    <div class="wrap-login100-form-btn">
-                        <div class="login100-form-bgbtn"></div>
-                        <button class="login100-form-btn"  type="submit" [disabled]="!formSubmitted">
-                            Sign In
-                        </button>
-                    </div>
-                </div>
+                <button class="btn btn-success login100-form-btn"  type="submit" [disabled]="!formSubmitted">
+                    Sign In
+                </button>
                 <!--<div class="text-center p-t-115">
                     <span class="txt1">
                         Don’t have an account?

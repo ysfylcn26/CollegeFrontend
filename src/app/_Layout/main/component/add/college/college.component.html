@@ -1,0 +1,29 @@
+<form class="mt-5 ml-2" [formGroup]="formCollege" (ngSubmit)="ngSubmit()">
+    <mat-form-field appearance="fill" style="width:100%">
+        <mat-label>Countries</mat-label>
+        <mat-select formControlName="country">
+            <mat-option *ngFor="let item of countries" [value]="item">{{item.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="width:100%">
+        <mat-label>University</mat-label>
+        <mat-select formControlName="college">
+            <mat-option *ngFor="let item of colleges" [value]="item">{{item.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field style="width:50%">
+        <mat-label>College</mat-label>
+        <input matInput formControlName="newCollege">
+    </mat-form-field>
+    <div class="row">
+        <div class="col-sm-4 mb-2">
+            <button class="btn btn-success btn-block" type="submit" [disabled]="!formCollege.value.newCollege">Add</button>
+        </div>
+        <div class="col-sm-4 mb-2">
+            <button class="btn btn-danger btn-block" type="button" (click)="delete()" [disabled]="!formCollege.value.college">Delete</button>
+        </div>
+        <div class="col-sm-4">
+            <button class="btn btn-info btn-block" type="button" (click)="update()" [disabled]="!(formCollege.value.newCollege && formCollege.value.college)">Update</button>
+        </div>
+    </div>
+</form>

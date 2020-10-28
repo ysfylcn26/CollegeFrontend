@@ -1,0 +1,36 @@
+<div *ngIf="id">
+    <form [formGroup]="formInformation" (submit)="submit()">
+        <h2 class="text-muted">{{name}}</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">€</span>
+                    </div>
+                    <input type="number" class="form-control" min="0" placeholder="Fee" formControlName="fee">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Start</label>
+                    <div class="col-10">
+                        <input class="form-control" type="date" formControlName="start">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">End</label>
+                    <div class="col-10">
+                        <input class="form-control" type="date" formControlName="end">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <textarea class="form-control bg-light mb-2" style="width: 100%" placeholder="Notes..." rows="5"
+                  formControlName="info"></textarea>
+        <button class="btn btn-info float-sm-right" type="submit">Save</button>
+    </form>
+</div>

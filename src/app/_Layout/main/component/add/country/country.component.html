@@ -1,0 +1,23 @@
+<form class="mt-5 ml-2" [formGroup]="formCountry" (ngSubmit)="ngSubmit()">
+    <mat-form-field appearance="fill" style="width:100%">
+        <mat-label>Countries</mat-label>
+        <mat-select formControlName="country">
+            <mat-option *ngFor="let item of countries" [value]="item">{{item.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field style="width:50%">
+        <mat-label>Country</mat-label>
+        <input matInput formControlName="newCountry">
+    </mat-form-field>
+    <div class="row">
+        <div class="col-sm-4 mb-2">
+            <button class="btn btn-success btn-block" type="submit" [disabled]="!formCountry.controls.newCountry.value">Add</button>
+        </div>
+        <div class="col-sm-4 mb-2">
+            <button class="btn btn-danger btn-block" type="button" (click)="delete()" [disabled]="!formCountry.controls.country.value">Delete</button>
+        </div>
+        <div class="col-4">
+            <button class="btn btn-info btn-block" type="button" (click)="update()" [disabled]="!(formCountry.controls.country.value && formCountry.valid)">Update</button>
+        </div>
+    </div>
+</form>

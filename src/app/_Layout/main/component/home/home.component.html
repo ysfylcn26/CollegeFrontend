@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-6">
+        <form novalidate [formGroup]="searchForm" (ngSubmit)="ngSubmit()">
+            <mat-form-field appearance="fill" class="mt-5 ml-3" style="width:100%">
+                <mat-label>Select country</mat-label>
+                <mat-select [(value)]="selected.country" formControlName="country">
+                    <mat-option *ngFor="let item of result.countries" value="{{item}}">{{item}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field appearance="fill" class="ml-3" style="width:100%">
+                <mat-label>Select university</mat-label>
+                <mat-select [(value)]="selected.college" formControlName="college">
+                    <mat-option *ngFor="let item of result.colleges" value="{{item}}">{{item}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field appearance="fill" class="ml-3" style="width:100%">
+                <mat-label>Select department</mat-label>
+                <mat-select [(value)]="selected.department" formControlName="department">
+                    <mat-option *ngFor="let item of result.departments" value="{{item}}">{{item}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field appearance="fill" class="ml-3" style="width:100%">
+                <mat-label>Select degree</mat-label>
+                <mat-select [(value)]="selected.degree" formControlName="degree">
+                    <mat-option *ngFor="let item of result.degrees" value="{{item}}">{{item}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <div class="row ml-4">
+                <div class="col-sm-6 mb-2">
+                    <button class="btn btn-secondary btn-block" type="button" (click)="showData()">Search</button>
+                </div>
+                <div class="col-sm-6">
+                    <button class="btn btn-secondary btn-block" type="submit">Show Info</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-6">
+
+    </div>
+</div>

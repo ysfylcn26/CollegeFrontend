@@ -15,8 +15,8 @@ export class AlertService {
     return this.alerts.asObservable();
   }
 
-  alert(alert: Alert){
-    this.alerts.next(alert)
+  alert(alert: Alert): void{
+    this.alerts.next(alert);
   }
 
 }

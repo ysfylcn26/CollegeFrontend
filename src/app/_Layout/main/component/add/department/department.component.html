@@ -1,0 +1,41 @@
+<form class="mt-5 ml-2" [formGroup]="formDepartment" (ngSubmit)="ngSubmit()">
+    <mat-form-field appearance="fill" style="width:100%">
+        <mat-label>Countries</mat-label>
+        <mat-select formControlName="country">
+            <mat-option *ngFor="let item of countries" [value]="item">{{item.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="width:100%">
+        <mat-label>University</mat-label>
+        <mat-select formControlName="college">
+            <mat-option *ngFor="let item of colleges" [value]="item">{{item.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="width:100%">
+        <mat-label>Departments</mat-label>
+        <mat-select formControlName="department">
+            <mat-option *ngFor="let item of departments" [value]="item">{{item.name}} - {{item.degree}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="width:100%">
+        <mat-label>Degree</mat-label>
+        <mat-select formControlName="degree">
+            <mat-option *ngFor="let item of degrees" value="{{item}}">{{item}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field style="width:50%">
+        <mat-label>Department</mat-label>
+        <input matInput formControlName="newDepartment">
+    </mat-form-field>
+    <div class="row">
+        <div class="col-sm-4 mb-2">
+            <button class="btn btn-success btn-block" type="submit" [disabled]="!formDepartment.valid">Add</button>
+        </div>
+        <div class="col-sm-4 mb-2">
+            <button class="btn btn-danger btn-block" type="button" (click)="delete()" [disabled]="!formDepartment.controls.department.value">Delete</button>
+        </div>
+        <div class="col-sm-4 mb-2">
+            <button class="btn btn-info btn-block" type="button" (click)="update()" [disabled]="!updateCheck()">Update</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,8 @@
+<div *ngIf="id">
+    <form [formGroup]="formComment" (submit)="submit()">
+        <h2 class="text-muted">{{name}}</h2>
+        <textarea class="form-control bg-light mb-2" style="width: 100%" placeholder="Comment..." rows="5"
+                  formControlName="comment"></textarea>
+        <button class="btn btn-info float-sm-right" type="submit">Save</button>
+    </form>
+</div>

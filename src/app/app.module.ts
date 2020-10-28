@@ -6,6 +6,7 @@ import {MainModule} from './_Layout/main/main.module';
 import {HeaderComponent} from './_Layout/haeder/header.component'
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
         MainModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+        BrowserAnimationsModule
 
     ],
     providers: [],
