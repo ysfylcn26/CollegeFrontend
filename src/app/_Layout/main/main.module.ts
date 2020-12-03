@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, DatePipe} from '@angular/common';
 import {MainRoutingModule} from './main-routing.module';
 import {MainComponent} from './main.component';
 import {SignInComponent} from './component/sign-in/sign-in.component';
@@ -18,8 +18,11 @@ import {DepartmentComponent} from './component/add/department/department.compone
 import {UsersComponent} from './component/users/users.component';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableModule} from '@angular/material/table';
-import { InformationComponent } from './component/add/information/information.component';
-import { CommentComponent } from './component/add/comment/comment.component';
+import {InformationComponent} from './component/add/information/information.component';
+import {CommentComponent} from './component/add/comment/comment.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatSortModule} from '@angular/material/sort';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
     declarations: [
@@ -37,7 +40,8 @@ import { CommentComponent } from './component/add/comment/comment.component';
         CommentComponent,
     ],
     exports: [
-        MainComponent
+        MainComponent,
+        AlertComponent
     ],
     imports: [
         CommonModule,
@@ -48,10 +52,14 @@ import { CommentComponent } from './component/add/comment/comment.component';
         MatSidenavModule,
         MatInputModule,
         MatTableModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatSortModule,
+        MatProgressSpinnerModule,
+        MatIconModule
     ],
     providers: [
-        authInterceptorProviders
+        authInterceptorProviders,
+        DatePipe
     ]
 })
 export class MainModule {

@@ -18,9 +18,9 @@ import {SuperadminGuard} from './guard/superadmin.guard';
 const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'sign-in', component: SignInComponent},
-    {path: 'sign-up', component: SignUpComponent}, //, canActivate: [AdminGuard]
+    {path: 'sign-up', component: SignUpComponent, canActivate: [AdminGuard]},
     {path: 'home', component: HomeComponent, canActivate: [ActiveGuard]},
-    {path: 'users', component: UsersComponent, canActivate: [AdminGuard]},
+    {path: 'users', component: UsersComponent, canActivate: [SuperadminGuard]},
     {path: 'add', component: AddComponent, canActivate: [AdminGuard], children: [
             {path: '', redirectTo: 'country', pathMatch: 'full'},
             {path: 'country', component: CountryComponent},

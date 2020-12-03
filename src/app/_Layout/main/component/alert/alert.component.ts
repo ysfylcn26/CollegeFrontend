@@ -2,26 +2,25 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {Alert, AlertType} from '../../dto/alert';
 import {AlertService} from '../../_service/alert.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     selector: 'app-alert',
-    templateUrl: './alert.component.html'
+    templateUrl: './alert.component.html',
+    styleUrls: ['./alert.component.css']
 })
 export class AlertComponent implements OnInit, OnDestroy {
 
-    alerts: Alert[] = [];
     alertsSubscription: Subscription;
 
-    constructor(private alert: AlertService) {
+    constructor(private alert: AlertService,
+                private toastr: ToastrService) {
     }
 
     ngOnInit(): void {
         this.alertsSubscription = this.alert.onAlert().subscribe(alert => {
             if (alert != null && alert.message != null) {
-                this.alerts.push(alert);
-                setTimeout(() => {
-                    this.removeAlert(alert);
-                }, 5000);
+                this.showToaster(alert);
             }
         });
     }
@@ -30,24 +29,20 @@ export class AlertComponent implements OnInit, OnDestroy {
         this.alertsSubscription.unsubscribe();
     }
 
-    removeAlert(alert: Alert): void {
-        if (!this.alerts.includes(alert)) {
-            return;
+    showToaster(alert: Alert): void {
+        switch (alert.type) {
+            case AlertType.SUCCESS:
+                this.toastr.success(alert.message, alert.title, {timeOut: 5000});
+                break;
+            case AlertType.INFO:
+                this.toastr.info(alert.message, alert.title, {timeOut: 5000});
+                break;
+            case AlertType.WARNING:
+                this.toastr.warning(alert.message, alert.title, {timeOut: 5000});
+                break;
+            case AlertType.ERROR:
+                this.toastr.error(alert.message, alert.title, {timeOut: 5000});
+                break;
         }
-        this.alerts = this.alerts.filter(x => x !== alert);
     }
-
-    cssClass(alert: Alert) {
-        const classes = ['alert', 'alert-dismissable', 'mt-4', 'container'];
-        const alertTypeClass = {
-            [AlertType.SUCCESS]: 'alert alert-success',
-            [AlertType.ERROR]: 'alert alert-danger',
-            [AlertType.WARNING]: 'alert alert-info',
-            [AlertType.INFO]: 'alert alert-warning'
-        };
-
-        classes.push(alertTypeClass[alert.type]);
-        return classes.join(' ');
-    }
-
 }

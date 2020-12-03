@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../main/_service/auth.service';
-import { ROLE_USER, ROLE_ADMIN } from '../main/constant';
+import {ROLE_USER, ROLE_ADMIN, ROLE_SUPER_ADMIN} from '../main/constant';
 @Component({
     selector: 'app-header',
     templateUrl: './header.component.html',
@@ -13,16 +13,20 @@ export class HeaderComponent implements OnInit {
     private signStatu: Subscription;
     admin = false;
     statu = false;
+    superAdmin = false;
+    isResponsibility = false;
     constructor(private auth: AuthService) {
     }
 
     ngOnInit(): void {
             this.role = this.auth.getRoleValue().subscribe( role => {
-                if (role === ROLE_ADMIN || this.auth.isAdmin()) {
+                this.statu = false;
+                this.superAdmin = false;
+                if (role === ROLE_ADMIN) {
                     this.admin = true;
                 }
-                else {
-                    this.admin = false;
+                if (role === ROLE_SUPER_ADMIN) {
+                    this.superAdmin = true;
                 }
             });
             this.signStatu = this.auth.getSignStatus().subscribe( data => {
@@ -33,16 +37,22 @@ export class HeaderComponent implements OnInit {
                     this.statu = false;
                 }
             });
+            this.auth.isResponsibility().subscribe( data => {
+               if(data){
+                   this.isResponsibility = true;
+               }
+            });
     }
 
-    ngOnDestroy(): void {
+    ngOnDestroy(): void{
         this.role.unsubscribe();
         this.signStatu.unsubscribe();
     }
 
-    signOut(){
+    signOut(): void{
         this.statu = false;
         this.admin = false;
+        this.superAdmin = false;
         sessionStorage.clear();
     }
 }

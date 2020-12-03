@@ -1,63 +1,88 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {UserTableSource} from '../table/user.table.source';
+import {UserService} from '../../_service/user.service';
+import {tap} from 'rxjs/operators';
 import {MatPaginator} from '@angular/material/paginator';
-import {MatTableDataSource} from '@angular/material/table';
+import {AddService} from '../../_service/add.service';
+import {Country} from '../dto/country';
+import {Alert, AlertType} from '../../dto/alert';
+import {AlertService} from '../../_service/alert.service';
+import {ROLE_ADMIN, ROLE_SUPER_ADMIN, ROLE_USER} from '../../constant';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+    selector: 'app-users',
+    templateUrl: './users.component.html',
+    styleUrls: ['./users.component.css']
 })
-export class UsersComponent  implements AfterViewInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+export class UsersComponent implements OnInit, AfterViewInit {
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
+    dataSource: UserTableSource;
+    displayedColumns = ['email', 'pass', 'role', 'country', 'operation'];
+    totalSize = 0;
+    countries: Country[] = null;
+    roles: string[] = [ROLE_SUPER_ADMIN, ROLE_ADMIN, ROLE_USER];
+    passwordControl = new RegExp('^([A-Za-z0-9]{4,20}){1}$|^$');
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }
+    @ViewChild(MatPaginator) paginator: MatPaginator;
+
+    constructor(private userService: UserService,
+                private country: AddService,
+                private alertService: AlertService) {
+    }
+
+    ngOnInit(): void {
+        this.country.getCountry().subscribe(data => {
+            this.countries = data;
+        }, error => {
+            this.alertService.alert(new Alert('Country', 'Cannot get countries', AlertType.ERROR));
+        });
+        this.dataSource = new UserTableSource(this.userService);
+        this.dataSource.loadUsers(null, 'asc', 0, 5);
+        this.userService.getTotalSize().subscribe(data => {
+            this.totalSize = data;
+        });
+    }
+
+    ngAfterViewInit(): void {
+        this.paginator.page
+            .pipe(
+                tap(() => this.loadLessonsPage())
+            )
+            .subscribe();
+    }
+
+    loadLessonsPage(): void {
+        this.dataSource.loadUsers(
+            null,
+            'asc',
+            this.paginator.pageIndex,
+            this.paginator.pageSize);
+    }
+
+    save(row): void {
+        if (this.passwordControl.test(row.pass)) {
+            this.userService.saveUser(row).subscribe(user => {
+                this.alertService.alert(new Alert('Success', 'Changing is successful for ' + user.username, AlertType.SUCCESS));
+            }, error => {
+                this.alertService.alert(new Alert('Error', 'Changing is not successful for ' + row.username, AlertType.ERROR));
+            });
+
+        } else {
+            this.alertService.alert(new Alert('Passsword', 'Password is not valid', AlertType.WARNING));
+        }
+    }
+
+    delete(row): void {
+
+    }
+
+    onRoolChange(user): void {
+        if (user.role !== 'ROLE_ADMIN') {
+            user.country = null;
+        }
+    }
+
+    compareObjects(o1: any, o2: any): boolean {
+        return o1?.name === o2?.name && o1?.id === o2?.id;
+    }
 }
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
-  {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-  {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-  {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
-  {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-  {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
-  {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-  {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
-  {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
-  {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-  {position: 11, name: 'Sodium', weight: 22.9897, symbol: 'Na'},
-  {position: 12, name: 'Magnesium', weight: 24.305, symbol: 'Mg'},
-  {position: 13, name: 'Aluminum', weight: 26.9815, symbol: 'Al'},
-  {position: 14, name: 'Silicon', weight: 28.0855, symbol: 'Si'},
-  {position: 15, name: 'Phosphorus', weight: 30.9738, symbol: 'P'},
-  {position: 16, name: 'Sulfur', weight: 32.065, symbol: 'S'},
-  {position: 17, name: 'Chlorine', weight: 35.453, symbol: 'Cl'},
-  {position: 18, name: 'Argon', weight: 39.948, symbol: 'Ar'},
-  {position: 19, name: 'Potassium', weight: 39.0983, symbol: 'K'},
-  {position: 20, name: 'Calcium', weight: 40.078, symbol: 'Ca'},
-];

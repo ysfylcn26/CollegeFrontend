@@ -37,7 +37,7 @@ export class InformationComponent implements OnInit, OnDestroy {
                     this.name = infos.name + ' - ' + infos.degree;
                     this.formInformation.get('fee').setValue(infos.fee);
                     this.formInformation.get('info').setValue(infos.info);
-                    this.formInformation.get('start').setValue(infos.start);
+                    this.formInformation.get('start').setValue(new Date(infos.start.toString()));
                     this.formInformation.get('end').setValue(infos.end);
                 }, error => {
                     this.alert.alert(new Alert('Error', 'We cannot get note and fee', AlertType.ERROR));

@@ -26,7 +26,7 @@ export class SignUpComponent implements OnInit {
         this.userForm = this.fb.group({
             email: new FormControl(null, [Validators.required, Validators.email, Validators.maxLength(50)]),
             pass: new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(20)]),
-            role: new FormControl(null, [])
+            role: new FormControl(null, [Validators.required])
         });
     }
 
@@ -34,8 +34,7 @@ export class SignUpComponent implements OnInit {
         this.formSubmitted = false;
         this.submitted = true;
         if (this.userForm.valid) {
-            this.auth.signUp(Object.assign(this.userForm.value,
-                {role: this.userForm.value.role == null ? null : [this.userForm.value.role]})).subscribe(data => {
+            this.auth.signUp(this.userForm.value).subscribe(data => {
                     this.alert.alert(new Alert('Sign Up', 'Successful recording for ' + data.email, AlertType.SUCCESS));
                 },
                 err => {

@@ -1,19 +1,19 @@
 <div class="row">
     <div class="col-5">
-        <a class="btn btn-secondary  mt-5 ml-3 btn-block"
-           [routerLink]="[{ outlets: {primary: ['country']} }]">Country</a>
+        <button class="btn mt-5 ml-3 btn-block"
+           [routerLink]="[{ outlets: {primary: ['country']} }]">Country</button>
         <br>
-        <a class="btn btn-secondary mt-2 ml-3 btn-block"
-           [routerLink]="[{ outlets: {primary: ['college']} }]">University</a>
+        <button class="btn mt-2 ml-3 btn-block"
+           [routerLink]="[{ outlets: {primary: ['college']} }]">University</button>
         <br>
-        <a class="btn btn-secondary mt-2 ml-3 btn-block"
-           [routerLink]="[{ outlets: {primary: ['department']} }]">Department</a>
+        <button class="btn mt-2 ml-3 btn-block"
+           [routerLink]="[{ outlets: {primary: ['department']} }]">Department</button>
         <br>
-        <button class="btn btn-secondary mt-2 ml-3 btn-block" [disabled]="!comment"
+        <button class="btn mt-2 ml-3 btn-block" [disabled]="!comment"
                 [routerLink]="[{ outlets: {commentAdd: ['information'] } }]">Set Information
         </button>
         <br>
-        <button class="btn btn-secondary mt-2 ml-3 btn-block" [disabled]="!comment"
+        <button class="btn mt-2 ml-3 btn-block" [disabled]="!comment"
                 [routerLink]="[{ outlets: {commentAdd: ['comment'] } }]" *ngIf="superadmin">Comment
         </button>
     </div>

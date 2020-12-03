@@ -2,7 +2,7 @@
     <div class="container-login100">
         <div class="wrap-login100">
             <form class="login100-form validate-form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
-                <span class="login100-form-title p-b-26">
+                <span class="login100-form-title p-b-26" style="text-col: rgb(242, 242, 242)">
                     Welcome
                 </span>
                 <span class="login100-form-title p-b-48">
@@ -34,7 +34,7 @@
                 <div>
                     <label class="label-font">Role</label>
                     <mat-form-field appearance="fill" style="width:100%">
-                        <mat-label>Colleges</mat-label>
+                        <mat-label>Roles</mat-label>
                         <mat-select formControlName="role">
                             <mat-option *ngFor="let item of roles" value="{{item}}">{{item}}</mat-option>
                         </mat-select>

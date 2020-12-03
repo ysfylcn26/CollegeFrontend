@@ -4,7 +4,6 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {environment} from '../../../../environments/environment';
 import {Department} from '../component/dto/department';
 import {Country} from '../component/dto/country';
-import {CollegeComponent} from '../component/add/college/college.component';
 import {College} from '../component/dto/college';
 import {Info} from '../dto/info';
 import {InfoResponse} from '../dto/info-response';

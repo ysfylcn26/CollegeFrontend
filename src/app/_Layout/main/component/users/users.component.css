@@ -1,3 +1,44 @@
-table {
+
+.mat-table {
+    overflow: auto;
+}
+.mat-table{
+    background-color: #F5F5F5;
+    overflow: auto;
     width: 100%;
+}
+.mat-header-cell, .mat-cell {
+    min-width: 150px;
+}
+.mat-form-field-underline{
+    background-color:transparent;
+}
+
+.mat-paginator{
+    background-color: #F5F5F5;
+    border: #EDEAE0 solid 1px;
+}
+
+.mat-row, .mat-header-row {
+    width: 100%;
+}
+
+button{
+    background-color: #F5F5F5;
+}
+
+.btnDelete:hover {
+    fill: red;
+}
+
+.btnDelete:active {
+    fill: black;
+}
+
+.btnSave:hover {
+    fill: green;
+}
+
+.btnSave:active {
+    fill: black;
 }

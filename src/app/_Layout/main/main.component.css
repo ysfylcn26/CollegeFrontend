@@ -1,7 +1,8 @@
 .container {
-    background-color: rgb(242, 242, 242);
+    background-color: #F2F2F2;
     width: 100vw;
     height: auto;
     min-height: 100vh;
     padding-bottom: 80px;
+    border-top:1px solid #333333;
 }

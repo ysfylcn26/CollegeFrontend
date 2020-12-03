@@ -12,17 +12,17 @@
             </div>
             <div class="col-md-4">
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">Start</label>
-                    <div class="col-10">
-                        <input class="form-control" type="date" formControlName="start">
+                    <label class="col-2 col-form-label pr-0">Start:</label>
+                    <div class="col-10 pl-0">
+                        <input class="form-control" type="date" formControlName="start" value ="{{ formInformation.get('start').value | date: 'yyyy-MM-dd'}}">
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group row">
-                    <label class="col-2 col-form-label">End</label>
-                    <div class="col-10">
-                        <input class="form-control" type="date" formControlName="end">
+                    <label class="col-2 col-form-label pr-0">End:</label>
+                    <div class="col-10 pl-0">
+                        <input class="form-control" type="date" formControlName="end" value ="{{ formInformation.get('end').value | date: 'yyyy-MM-dd'}}">
                     </div>
                 </div>
             </div>

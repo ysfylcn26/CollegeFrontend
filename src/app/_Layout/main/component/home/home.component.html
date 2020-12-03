@@ -1,49 +1,59 @@
-<div class="row">
-    <div class="col-6">
-        <form novalidate [formGroup]="searchForm" (ngSubmit)="ngSubmit()">
-            <mat-form-field appearance="fill" class="mt-5 ml-3" style="width:100%">
+<div class="row h-100">
+    <div class="col-md-5">
+        <form novalidate [formGroup]="searchForm" class="mt-5 mx-2" (ngSubmit)="ngSubmit()">
+            <mat-form-field appearance="fill" style="width:100%">
                 <mat-label>Select country</mat-label>
-                <mat-select [(value)]="selected.country" formControlName="country">
-                    <mat-option *ngFor="let item of result.countries" value="{{item}}">{{item}}</mat-option>
+                <mat-select formControlName="country">
+                    <mat-option *ngFor="let item of result.countries" [value]="item">{{item.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
             <br>
-            <mat-form-field appearance="fill" class="ml-3" style="width:100%">
+            <mat-form-field appearance="fill" style="width:100%">
                 <mat-label>Select university</mat-label>
-                <mat-select [(value)]="selected.college" formControlName="college">
-                    <mat-option *ngFor="let item of result.colleges" value="{{item}}">{{item}}</mat-option>
+                <mat-select formControlName="college">
+                    <mat-option *ngFor="let item of result.colleges" [value]="item">{{item.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
 
             <br>
-            <mat-form-field appearance="fill" class="ml-3" style="width:100%">
-                <mat-label>Select department</mat-label>
-                <mat-select [(value)]="selected.department" formControlName="department">
-                    <mat-option *ngFor="let item of result.departments" value="{{item}}">{{item}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-
-            <br>
-            <mat-form-field appearance="fill" class="ml-3" style="width:100%">
+            <mat-form-field appearance="fill" style="width:100%">
                 <mat-label>Select degree</mat-label>
-                <mat-select [(value)]="selected.degree" formControlName="degree">
-                    <mat-option *ngFor="let item of result.degrees" value="{{item}}">{{item}}</mat-option>
+                <mat-select formControlName="degree">
+                    <mat-option>All</mat-option>
+                    <mat-option *ngFor="let item of result.degrees" value={{item}}>{{item}}</mat-option>
                 </mat-select>
             </mat-form-field>
             <br>
-            <div class="row ml-4">
+            <mat-form-field appearance="fill" style="width:100%">
+                <mat-label>Select department</mat-label>
+                <mat-select formControlName="department">
+                    <mat-option *ngFor="let item of result.departments" [value]="item">{{item.name}}
+                        - {{item.degree}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <div class="row">
                 <div class="col-sm-6 mb-2">
-                    <button class="btn btn-secondary btn-block" type="button" (click)="showData()">Search</button>
+                    <button class="btn btn-block" type="button" (click)="showData()">Search</button>
                 </div>
                 <div class="col-sm-6">
-                    <button class="btn btn-secondary btn-block" type="submit">Show Info</button>
+                    <button class="btn btn-block" type="submit">Show Info</button>
                 </div>
             </div>
         </form>
     </div>
 
-    <div class="col-6">
-
+    <div class="col-md-7 mt-5">
+        <h3>Information</h3>
+        <textarea class="bg-light mr-2" readonly style="width: 100%; resize: none; height: 275px" rows="5">
+            {{information?.info}}
+        </textarea>
+        <div *ngIf="information">
+            <div class="h5">Fee:<span class="text-danger ml-1">{{information?.fee}}€</span></div>
+            <br>
+            <div class="h5">Start date:<span class="text-secondary ml-1">{{information?.start | date: 'dd/MM/yyyy'}}</span></div>
+            <div class="h5">End &nbsp; date:<span class="text-secondary ml-1">{{information?.end | date: 'dd/MM/yyyy'}}</span></div>
+        </div>
     </div>
 </div>

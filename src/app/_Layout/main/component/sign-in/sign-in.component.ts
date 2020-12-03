@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {Alert, AlertType} from '../../dto/alert';
-import {User} from '../../dto/user';
 import {AlertService} from '../../_service/alert.service';
 import {AuthService} from '../../_service/auth.service';
 import {TokenStorageService} from '../../_service/token-storage.service';
+import {User} from '../../dto/user';
 
 @Component({
     selector: 'app-sign-in',
@@ -38,7 +38,7 @@ export class SignInComponent implements OnInit {
         if (this.userForm.valid) {
             this.auth.signIn(this.userForm.value).subscribe(data => {
                     this.token.saveToken(data.token);
-                    this.token.saveUser(new User(data.id, data.email));
+                    this.token.saveUser(new User(null, data.email));
                     this.auth.setRoleValue(data.role);
                     this.auth.setSignStatus(true);
                     this.router.navigate(['/home']);
