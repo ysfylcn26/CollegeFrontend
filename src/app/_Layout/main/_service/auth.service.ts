@@ -1,10 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {environment} from '../../../../environments/environment';
+import {environment} from 'src/environments/environment';
 import {TOKEN_KEY, ROLE_ADMIN, ROLE_USER, ROLE_SUPER_ADMIN} from '../constant';
 import jwt_decode from 'jwt-decode';
-import {UserService} from './user.service';
 
 const apiUrl = environment.apiUrl;
 

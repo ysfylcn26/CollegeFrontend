@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://college-network:8080'
+    apiUrl: 'http://eduwises.com:8080'
 };

@@ -2,9 +2,8 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, Subscriber} from 'rxjs';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {map} from 'rxjs/operators';
-import {environment} from '../../../../environments/environment';
+import {environment} from 'src/environments/environment';
 import {UserTable} from '../dto/user.table';
-import {User} from '../dto/user';
 
 const apiUrl = environment.apiUrl;
 
